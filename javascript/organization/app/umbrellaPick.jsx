@@ -1,4 +1,4 @@
-import React from 'react-dom/node_modules/react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class UmbrellaPickBox extends React.Component {

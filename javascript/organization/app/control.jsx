@@ -1,4 +1,4 @@
-import React from 'react-dom/node_modules/react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 // This is here to make webpack work, if you can find a better way please fix.

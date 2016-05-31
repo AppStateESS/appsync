@@ -1,4 +1,4 @@
-import React from 'react-dom/node_modules/react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ControlBox from './control.jsx';
 
