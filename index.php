@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @author Micah Carter <mcarter at tux dot appstate dot edu>
- */
 // Make sure the source directory is defined
 if (!defined('PHPWS_SOURCE_DIR')) {
     include '../../config/core/404.html';
