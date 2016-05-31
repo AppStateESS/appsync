@@ -1,2 +1,2 @@
-# appsync
-Front-end to OrgSync api
+# OrgSyncAdmin
+A tool for managing OrgSync portal memberships.
