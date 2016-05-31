@@ -28,6 +28,6 @@ $link[] = array(
         'restricted'    => true,
         'url'           => 'index.php?module=appsync',
         'description'   => 'Manage OrgSync',
-        'image'         => 'freedo_Glossy_Globe_small.png',
+        'image'         => 'appsync.png',
         'tab'           => 'content'
         );
