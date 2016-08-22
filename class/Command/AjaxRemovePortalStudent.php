@@ -45,27 +45,28 @@ class AjaxRemovePortalStudent extends \AppSync\Command {
         // back to the front end if it is
         if(!is_numeric($input))
         {
-            $student = \AppSync\UtilityFunctions::getStudentByEmail($input);
+	  if(stripos($input,'@') === false){
+	    $input .= '@appstate.edu';
+	  }
+	  $student = \AppSync\UtilityFunctions::getOrgSyncAcctByEmail($input);
         }
         else {
-            $student = \AppSync\UtilityFunctions::getStudentByBanner($input);
+	  $student = \AppSync\UtilityFunctions::getOrgSyncAcctByBannerID($input);
         }
-
-        if($student == null || isset($student->Message) || $student->emailAddress == null)
+	
+        if(!$student || !is_numeric($student->id))
         {
-            $returnData = array('status' => 0);
+	  $returnData = array('status' => 0,'id' => $input);
             echo json_encode($returnData);
             exit;
         }
 
-        $id     = \AppSync\UtilityFunctions::getIDFromUsername($student->{'emailAddress'});
-
         // Pass the student info and group id to the function responsible for interacting
         // with the OrgSync API
-        $status = $this->removeAccount($id, $portal);
+        $status = $this->removeAccount($student->id, $portal);
 
         // Create the response to the front end
-        $name = $student->{'firstName'} . ' ' . $student->{'lastName'};
+        $name = $student->first_name . ' ' . $student->last_name;
         if($status)
         {
             $returnData = array('status' => 1, 'name' => $name);

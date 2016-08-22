@@ -70,10 +70,10 @@ class UtilityFunctions {
         // Execute the curl request and store its result
         $student = json_decode(curl_exec($curl));
         curl_close($curl);
-
+	
         if($student)
         {
-            return $student;
+	  return $student;
         }
         else
         {
@@ -85,6 +85,51 @@ class UtilityFunctions {
 
             return $faculty;
         }
+    }
+
+    /**
+     * Retrieves a student orgsync id when provided with a banner id
+     * @return student_id
+     */
+    public static function getOrgSyncAcctByBannerID($banner_id){
+      // Retrieve the orgsync url values using the static functions in this class
+      $key = self::getOrgSyncKey();
+      $base_url = self::getOrgSyncURL();
+      $banner_profile_id = BANNER_ELEMENT_ID;
+      $curl = curl_init();
+      curl_setopt_array($curl, array(CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => $base_url."accounts/custom_profile/$banner_profile_id/$banner_id?key=$key"));
+      $account_result = curl_exec($curl);
+      curl_close($curl);  
+      if($account_result){
+	$account = json_decode($account_result);
+	if(is_array($account))
+	  $account = array_shift($account);
+      }else{
+	$account = FALSE;
+      }
+
+      return $account;
+    }
+
+    /**
+     * Retrieves a student orgsync id when provided with an email address.
+     * @return student_id
+     */
+    public static function getOrgSyncAcctByEmail($email){
+      // Retrieve the orgsync url values using the static functions in this class
+      $key = self::getOrgSyncKey();
+      $base_url = self::getOrgSyncURL();
+
+      $curl = curl_init();
+      curl_setopt_array($curl, array(CURLOPT_RETURNTRANSFER => 1, CURLOPT_URL => $base_url."accounts/email/$email?key=$key"));
+      $result = curl_exec($curl);
+      curl_close($curl);
+      if($result){
+        $result = json_decode($result);
+	return $result;
+      }
+    
+      return false;
     }
 
     /**
