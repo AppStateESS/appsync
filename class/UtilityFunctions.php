@@ -2,7 +2,7 @@
 
 namespace AppSync;
 
-use \Database;
+use \phpws2\Database;
 
 /**
  * A class for all the static utility functions that are used in multiple classes.

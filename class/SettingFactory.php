@@ -2,7 +2,7 @@
 
 namespace AppSync;
 
-use \Database;
+use \phpws2\Database;
 
 /**
  * Factory class for retrieving Settings from the database.

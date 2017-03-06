@@ -2,7 +2,7 @@
 
 namespace AppSync;
 
-use \Database;
+use \phpws2\Database;
 
 /**
  * Factory class for retrieving and saving UmbrellaAdmins to and from the database.
